@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>一起去公園玩 : 數數看</title>
+  <title>TEST</title>
+  <script src="jquery/jquery-1.10.2.js" type='text/javascript' ></script>
+  <script src="jquery/jquery-ui-12.1.js" type='text/javascript' ></script>
+  <script src="bootstrap4/js/bootstrap.js" type='text/javascript' ></script>
+  <link href="bootstrap4/css/bootstrap.css"  rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="includes/sweetalert2-master/dist/sweetalert2.min.js" type='text/javascript' ></script>
+  <link href="includes/sweetalert2-master/dist/sweetalert2.css"  rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+<style>
+	#quest1{height:100px;border:1px solid green;}
+	#quest2{height:100px;border:1px solid blue;}
+</style>
+
+<style type="text/css">
+.fixed {
+ background: url("garden4.jpg");
+ background-size: 100% 110%;
+}
+.lds-heart {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform: rotate(45deg);
+  transform-origin: 40px 40px;
+}
+.lds-heart div {
+  top: 32px;
+  left: 32px;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #fcf;
+  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.lds-heart div:after,
+.lds-heart div:before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: #fcf;
+}
+.lds-heart div:before {
+  left: -24px;
+  border-radius: 50% 0 0 50%;
+}
+.lds-heart div:after {
+  top: -24px;
+  border-radius: 50% 50% 0 0;
+}
+@keyframes lds-heart {
+  0% {
+    transform: scale(0.95);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  39% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+</style>
+<script>
+
+var yes = [['q1',3],['q2',6],['q3',6],['q4',15],['q5',4],['q6',9],['q7',7],['q8',16],['q9',6],['q10',5],['q11',11],['12',0]];
+var count = 1;
+	$( document ).ready(function() {
+     $("#q1").show();
+		 $("#q2").hide();
+     $("#q3").hide();
+     $("#q4").hide();
+     $("#q5").hide();
+     $("#q6").hide();
+     $("#q7").hide();
+     $("#q8").hide();
+     $("#q9").hide();
+     $("#q10").hide();
+     $("#q11").hide();
+     $("#q12").hide();
+     $("#nextQ").hide();
+     $("#restart").hide();
+     $("#bgmusic").play();
+	});
+	function summary(id){
+		var no = $("#"+id).val();
+		no = parseInt(no);
+		console.log('no='+no);
+		var tot = $("#total").text();
+		tot = parseInt(tot);
+		tot = tot + no;
+		console.log('total='+tot);
+		$("#total").text(tot);
+	}
+	function clearFun(){
+		$("#total").text("0");
+    $("#ans").text("");
+	}
+  function next(){
+    $("#nextQ").hide();
+		if(!$("#q1").is(":hidden")){
+      $("#q1").hide();
+  		$("#q2").show();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q2").is(":hidden")){
+      $("#q1").hide();
+  		$("#q2").hide();
+      $("#q3").show();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q3").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").show();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q4").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").show();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q5").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").show();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q6").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").show();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q7").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").show();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q8").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").show();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q9").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").show();
+      $("#q11").hide();
+      $("#q12").hide();
+    }
+    else if(!$("#q10").is(":hidden")){
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").show();
+      $("#q12").hide();
+    }
+    else{
+      $("#q1").hide();
+ 		  $("#q2").hide();
+      $("#q3").hide();
+      $("#q4").hide();
+      $("#q5").hide();
+      $("#q6").hide();
+      $("#q7").hide();
+      $("#q8").hide();
+      $("#q9").hide();
+      $("#q10").hide();
+      $("#q11").hide();
+      $("#q12").show();
+      $("#nextQ").hide();
+    }
+	}
+
+	function getRandomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
+  function ifcorrect(){
+    var ANS = $("#ans").text();
+    for(var i=0;i<yes.length;i++){
+       var a=i+1;
+       var n='q'+a;
+       var t = yes[i][1];
+       if (ANS==t){
+         $("#nextQ").show();
+         $("#ans").text("");
+       }
+    }
+  }
+  function ifcorrect2(){
+    var ANS = $("#ans").text();
+    if(!$("#q1").is(":hidden")){
+      var T = document.getElementById("q1").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        $("#h1").show();
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q2").is(":hidden")){
+      var T = document.getElementById("q2").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q3").is(":hidden")){
+      var T = document.getElementById("q3").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q4").is(":hidden")){
+      var T = document.getElementById("q4").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q5").is(":hidden")){
+      var T = document.getElementById("q5").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q6").is(":hidden")){
+      var T = document.getElementById("q6").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q7").is(":hidden")){
+      var T = document.getElementById("q7").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q8").is(":hidden")){
+      var T = document.getElementById("q8").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q9").is(":hidden")){
+      var T = document.getElementById("q9").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q10").is(":hidden")){
+      var T = document.getElementById("q10").getAttribute("value");
+      if(T==ANS){
+        $("#nextQ").show();
+        $("#ans").text("");
+        Swal.fire({
+          title: "答對了 ! ",
+          text: "你好棒 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+    else if(!$("#q11").is(":hidden")){
+      var T = document.getElementById("q11").getAttribute("value");
+      if(T==ANS){
+        Swal.fire({
+          title: "恭喜你 !",
+          text: "全部題目都答對了 !",
+          width: 400,
+          icon: 'success',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+        $("#q1").hide();
+   		  $("#q2").hide();
+        $("#q3").hide();
+        $("#q4").hide();
+        $("#q5").hide();
+        $("#q6").hide();
+        $("#q7").hide();
+        $("#q8").hide();
+        $("#q9").hide();
+        $("#q10").hide();
+        $("#q11").hide();
+        $("#q12").show();
+        $("#nextQ").hide();
+        $("#restart").show();
+        $("#ans").text("");
+
+      }
+      else{
+        $("#ans").text("");
+        Swal.fire({
+          title: "答錯了 !",
+          text: "再試試看",
+          width: 400,
+          icon: 'error',
+          backdrop: `
+          rgba(0,0,123,0.4)`
+        });
+      }
+    }
+  }
+  function inputs(id){
+    var a = $("#"+id).val();
+    var A = $("#ans").text();
+    var Aa = A + a;
+    $("#ans").text(Aa);
+
+
+  }
+  function RE(){
+    location.reload()
+    $("#restart").hidden();
+  }
+
+</script>
+<script type="text/javascript">
+window.onload = function(){
+             setInterval("toggleSound()",100);
+        }
+
+    function toggleSound() {
+                var music = document.getElementById("bgmusic");//獲取ID
+
+                if (music.paused) { //判讀是否播放
+                    music.paused=false;
+                    music.play(); //沒有就播放
+                }
+        }
+</script>
+</head>
+    <!-- oncontextmenu="return false"-->
+<body class="fixed">
+  <a type='button' class="btn btn-outline-danger" href="index.html">回首頁</a>
+<div class="row">
+  <div class="col-md-4">
+<div id="h1" class="lds-heart" style="margin-left:10px;"><div></div></div>
+<div id="h2"class="lds-heart" ><div></div></div>
+<div class="lds-heart" ><div></div></div>
+
+
+  <audio id="bgmusic"autoplay loop>
+  <source src="guitar.mp3" type="audio/mpeg" >
+  </audio>
+
+	<!--<div class="col-3"  style="padding-left:20px;border:8px solid red;">-->
+
+
+    <!--&ensp;&ensp;&ensp;&ensp;Total is = <span id="total">0</span><br><br>-->
+    <div id="q1" value="3"style="font-size:25px">&ensp;&ensp;&ensp;草地上有幾隻狗 ?</div>
+    <div id="q2" value="6"style="font-size:25px">&ensp;&ensp;&ensp;天空有幾隻鳥 ?</div>
+    <div id="q3"value="6"style="font-size:25px">&ensp;&ensp;&ensp;池塘裡有幾隻鴨子 ?</div>
+    <div id="q4"value="15"style="font-size:25px">&ensp;&ensp;&ensp;總共有幾隻動物 ?</div>
+    <div id="q5"value="4"style="font-size:25px">&ensp;&ensp;&ensp;有幾棵樹 ?</div>
+    <div id="q6"value="9"style="font-size:25px">&ensp;&ensp;&ensp;樹上有幾顆蘋果 ?</div>
+    <div id="q7"value="7"style="font-size:25px">&ensp;&ensp;&ensp;樹上有幾顆橘子 ?</div>
+    <div id="q8"value="16"style="font-size:25px">&ensp;&ensp;&ensp;樹上總共有幾顆水果 ?</div>
+    <div id="q9"value="6"style="font-size:25px">&ensp;&ensp;&ensp;草地上有幾朵粉紅色的花 ?</div>
+    <div id="q10"value="5"style="font-size:25px">&ensp;&ensp;&ensp;草地上有幾朵藍色的花 ?</div>
+    <div id="q11"value="11"style="font-size:25px">&ensp;&ensp;&ensp;草地上總共有幾朵花 ?</div>
+    <div id="q12"style="font-size:25px">&ensp;&ensp;&ensp;&ensp;恭喜你 ! 題目完成 !</div>
+
+    <span style="font-size:1.5em;">&ensp;&ensp;&ensp;答案 : </span><span id="ans" style="color: red;font-size:1.5em;"></span>
+		<table class='table table-bordered' style="margin-left:30px;margin-top:10px;width:100px;padding-top:30px;border:8px solid white;" >
+		<tr><td><button id="no" type="button" class="btn btn-lg btn-outline-primary" onClick='inputs(this.id);' value="1" style="width:50px">1</button> </td>
+			<td><button id="no2" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="2" value="1" style="width:50px">2</button> </td>
+			<td><button id="no3" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="3" value="1" style="width:50px">3</button> </td></tr>
+		<tr><td><button id="no4" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="4" value="1" style="width:50px">4</button> </td>
+			<td><button id="no5" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="5" value="1" style="width:50px">5</button> </td>
+			<td><button id="no6" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="6" value="1" style="width:50px">6</button> </td></tr>
+    <tr><td><button id="no7" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="7" value="1" style="width:50px">7</button> </td>
+  		<td><button id="no8" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="8" value="1" style="width:50px">8</button> </td>
+  		<td><button id="no9" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="9" value="1" style="width:50px">9</button> </td></tr>
+
+    <tr><td></td><td><button id="no0" type="button" class="btn  btn-lg btn-outline-primary" onClick='inputs(this.id);' value="0" value="1" style="width:50px">0</button> </td>
+
+	  <tr><td><button id="clear" type="button" class="btn btn-lg btn-danger" onClick='clearFun();' >X</button></td>
+
+    <td></td><td><button id="define" type="button" class="btn btn-lg btn-danger" onClick='ifcorrect2();' >O</button></td></tr>
+    </table>
+    <button id="restart" type="Button" class="btn btn-lg btn-success" onclick="RE()" style="margin-left:90px;">再來一次</button>
+    <button id="nextQ" type="Button" class="btn  btn-success" onclick="next()" style="margin-left:115px;">下一題</button>
+</div>
+<div class="col-md-8"></div>
+</div>
+</body>
+</html>
